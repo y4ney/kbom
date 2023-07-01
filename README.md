@@ -1,20 +1,19 @@
-# KBOM - Kubernetes Bill of Materials
+# KBOM - Kubernetes 物料清单
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ksoclabs/kbom)
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ksoclabs/kbom)](https://goreportcard.com/report/github.com/ksoclabs/kbom)
 [![FOSSA Status](https://app.fossa.com/api/projects/custom%2B37386%2Fgithub.com%2Fksoclabs%2Fkbom.svg?type=shield)](https://app.fossa.com/projects/custom%2B37386%2Fgithub.com%2Fksoclabs%2Fkbom?ref=badge_shield)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7273/badge)](https://bestpractices.coreinfrastructure.org/projects/7273)
+Kubernetes物料清单（KBOM）标准提供了对整个行业广泛使用的容器编排工具的了解。
 
-The Kubernetes Bill of Materials (KBOM) standard provides insight into container orchestration tools widely used across the industry.
+作为初稿，我们已经创建了一个大致的规范，它应该与其他物料清单（BOM）标准保持一致。
 
-As a first draft, we have created a rough specification which should fall in line with other Bill of Materials (BOM) standards.
+KBOM项目提供了一个初始的JSON规范，并且可以在各种云服务提供商（CSP）以及自己构建的Kubernetes上进行扩展。
 
-The KBOM project provides an initial specification in JSON and has been constructed for extensibilty across various cloud service providers (CSPs) as well as DIY Kubernetes.
+## 快速开始
 
-## Getting Started
-
-### Installation
+### 安装
 
 ```sh
 brew install ksoclabs/homebrew-kbom/kbom
@@ -26,15 +25,15 @@ or
 make build
 ```
 
-### Usage
+### 使用
 
-`KBOM generate` generates a KBOM file for your Kubernetes cluster
+`KBOM generate`为您的Kubernetes集群生成一个KBOM文件
 
 ```sh
 kbom generate [flags]
 ```
 
-Optional flags include:
+可选标志包括：
 
 ```plain
   -f, --format string     Format (json, yaml) (default "json")
@@ -44,18 +43,16 @@ Optional flags include:
       --short             Short - only include metadata, nodes, images and resources counters
 ```
 
-## Schema
+## 模型
+高层对象模型可以在[这里](docs/schema.md)中找到。
 
-The high level object model can be found [here](docs/schema.md).
+## 支持的 Kubernetes 版本
+我们已经用高于*v1.19*更新的所有版本测试了*kbom*，并且可以确认它与每个版本完全兼容。这意味着您可以自信地使用我们的工具，知道它已经通过彻底的测试。
 
-## Supported Kubernetes Versions
+## 支持的云提供商
+我们已与所有主要云提供商一起测试了我们的工具，包括`Azure`、`AWS`和`Google Cloud`。 当然，可以为任何K8s集群生成“kbom”文件，但请记住，
+在某些情况下不是所有元数据条目都将被设置。
 
-We have tested *kbom* with all versions newer than *v1.19*, and can confirm that it is fully compatible with each of these versions. This means that you can use our tool with confidence, knowing that it has been thoroughly tested with.
+## 贡献
 
-## Supported Cloud Providers
-
-We have tested our tool with all of the main cloud providers, including `Azure`, `AWS`, and `Google Cloud`. Of course it's possible to generate `kbom` file for any K8s cluster, but please have in mind that in some cases not all metadata entries will be set.
-
-## Contributing
-
-KBOM is Apache 2.0 licensed and accepts contributions via GitHub pull requests. See the [CONTRIBUTING](CONTRIBUTING.md) file for details.
+KBOM是Apache 2.0许可的，并通过GitHub拉取请求接受贡献。详情请参阅[CONTRIBUTING](CONTRIBUTING.md)

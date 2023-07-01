@@ -1,11 +1,10 @@
-# Security Policy
+# 安全政策
 
 ## Supported Versions
+我们目前支持最新的版本进行安全修补，并会部署向前的版本。
 
-We currently support the latest release for security patching and will deploy forward releases.
-
-For example if there is a vulnerability in release `v0.1.0` we will fix that release in version `v0.1.1-fix` or `v0.1.1`
+例如，如果在版本`v0.1.0`中存在漏洞，我们将在版本`v0.1.1-fix`或`v0.1.1`中修复该漏洞。
 
 ## Reporting a Vulnerability
 
-If you are aware of a vulnverability please feel free to disclose it responsibly [here](https://github.com/ksoclabs/kbom/security/advisories/new).
+如果您意识到存在漏洞，请随时负责任地披露。 [here](https://github.com/ksoclabs/kbom/security/advisories/new).

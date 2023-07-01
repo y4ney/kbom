@@ -1,84 +1,70 @@
-# Contributing
+# 贡献
 
-KBOM is [Apache 2.0 licensed](https://github.com/ksoclabs/kbom/blob/main/LICENSE) and
-accepts contributions via GitHub pull requests. This document outlines
-some of the conventions on to make it easier to get your contribution
-accepted.
+KBOM遵循[Apache 2.0 许可证](https://github.com/ksoclabs/kbom/blob/main/LICENSE)，
+并接受通过GitHub拉取请求的贡献。本文档概述了一些规范，以便更容易地接受您的贡献。
 
-We gratefully welcome improvements to issues and documentation as well as to
-code.
 
-## Certificate of Origin
+我们非常欢迎对问题和文档的改进，同时也欢迎对代码的改进。
 
-By contributing to this project you agree to the Developer Certificate of
-Origin (DCO). This document was created by the Linux Kernel community and is a
-simple statement that you, as a contributor, have the legal right to make the
-contribution.
+## 来源证书
+通过对该项目的贡献，您同意遵守《开发者来源证书》（DCO）。该文件由Linux内核社区创建，是一个简单的声明，作为贡献者，您有法律权利进行贡献。
 
-We require all commits to be signed. By signing off with your signature, you
-certify that you wrote the patch or otherwise have the right to contribute the
-material by the rules of the [DCO](DCO):
+我们要求所有提交的代码都要进行签名。通过在提交中加入您的签名，您证明您编写了补丁或者按照[DCO](DCO)的规定有权贡献这些材料。
 
-`Signed-off-by: Firstname Lastname <firstname.lastname@example.com>`
 
-The signature must contain your real name
-(sorry, no pseudonyms or anonymous contributions)
-If your `user.name` and `user.email` are configured in your Git config,
-you can sign your commit automatically with `git commit -s`.
+签名方式: `Firstname Lastname <firstname.lastname@example.com>`
 
-## Communications
+签名必须包含您的真实姓名 （抱歉，不能假名或匿名贡献） 如果您的`user.name`和`user.email`在您的Git配置中配置，
+您可以使用`git commit -s`自动签署提交。
 
-To discuss ideas and specifications we use [GitHub Discussions](https://github.com/ksoclabs/kbom/discussions).
+## 讨论
+讨论想法和规格：[GitHub Discussions](https://github.com/ksoclabs/kbom/discussions)
 
-## How to run the KBOM generator in local environment
+## 如何在本地环境中运行KBOM生成器
 
-Prerequisites:
+先决条件
 
 * go >= 1.20
 * kind
 * golangci-lint
 
-Initialise repo:
+I初始化项目:
 
 ```bash
 make initialise
 ```
 
-To generate your first KBOM file we need to have access to a Kubernetes cluster.
-If you don't have any you could create your local cluster with `Kind`.
+要生成您的第一个KBOM文件，我们需要访问一个Kubernetes集群。 如果您没有任何集群，您可以使用`Kind`创建一个本地集群。
 
-Create kind cluster(optional):
+使用kind创建集群（选做）:
 
 ```bash
 kind create cluster --name kbom-test
 ```
 
-Build `kbom` binary:
+构建 `kbom` 二进制文件:
 
 ```bash
 make build
 ```
 
-Generate your first `kbom` file:
+生成你的第一个`kbom`文件：
 
 ```bash
 ./kbom generate
 ```
 
-## Acceptance policy
+## 验收政策
 
-These things will make a PR more likely to be accepted:
+这些事情将使PR更有可能被接受：
+* 良好描述的需求
+* 新代码的测试
+* 旧代码的测试！
+* 新代码和测试遵循旧代码和测试中的约定
+* 良好的提交消息（见下文）
+* 所有代码必须遵守 [Go代码审查评论](https://github.com/golang/go/wiki/CodeReviewComments)
+* 命名应遵守 [What's in a name](https://talks.golang.org/2014/names.slide#1)
+* 代码必须在Linux和Darwin上通过普通的`go build`构建
+* 代码应具有适当的测试覆盖率，并且写的测试用例可以成功运行`go test`
 
-* a well-described requirement
-* tests for new code
-* tests for old code!
-* new code and tests follow the conventions in old code and tests
-* a good commit message (see below)
-* all code must abide [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
-* names should abide [What's in a name](https://talks.golang.org/2014/names.slide#1)
-* code must build on both Linux and Darwin, via plain `go build`
-* code should have appropriate test coverage and tests should be written to work with `go test`
-
-In general, we will merge a PR once one maintainer has endorsed it.
-For substantial changes, more people may become involved, and you might
-get asked to resubmit the PR or divide the changes into more than one PR.
+一般来说，一旦一个维护者认可了PR，我们将合并PR。 对于实质性的变化，可能会有更多的人参与其中，而你可能会 被要求重新提交PR或将更改分成多个PR。

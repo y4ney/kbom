@@ -15,3 +15,4 @@ bom.json
 # Coverage
 coverage.out
 coverage_report.html
+./.idea

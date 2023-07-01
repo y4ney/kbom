@@ -1,10 +1,10 @@
 ## KBOM Schema
 
-The section below describes the high level object model for KBOM.
+以下部分描述了KBOM的高级对象模型。
 
-Cluster Details
+集群细节
 
-Instances
+实例
 - Name
 - Hostname
 - CloudType
@@ -17,16 +17,14 @@ Instances
 - Kubelet Version
 - Kube Proxy Version
 
-Images
+镜像
 - Name
 - Digest
 
-KubeObjects
+Kube对象
 - Kind
 - Api Version
 - Count
 - Details
 
-This overall structure provides a base spec to be expanded upon by the community.
-
-The intent of the standard is to be extensible to support various use cases across the industry.
+这种整体结构提供了一个由社区扩展的基本规格。 该标准的意图是可扩展，以支持整个行业的各种用例。
