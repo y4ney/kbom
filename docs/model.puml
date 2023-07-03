@@ -1,0 +1,108 @@
+@startuml
+legend
+<u><b>Legend</b></u>
+Render Aggregations: true
+Render Fields: true
+Render Methods: true
+Pritave Aggregations: true
+end legend
+namespace model {
+    class Capacity << (S,Aquamarine) >> {
+        + CPU string
+        + Memory string
+        + Pods string
+        + EphemeralStorage string
+
+    }
+    class Cluster << (S,Aquamarine) >> {
+        + CACertDigest string
+        + K8sVersion string
+        + CNIVersion string
+        + Location *Location
+        + NodesCount int
+        + Nodes []Node
+        + Resources Resources
+
+    }
+    class Image << (S,Aquamarine) >> {
+        + Name string
+        + Digest string
+
+    }
+    class KBOM << (S,Aquamarine) >> {
+        + ID string
+        + BOMFormat string
+        + SpecVersion string
+        + GeneratedAt time.Time
+        + GeneratedBy Tool
+        + Cluster Cluster
+
+    }
+    class Location << (S,Aquamarine) >> {
+        + Location string
+        + Region string
+        + Zone string
+
+    }
+    class Node << (S,Aquamarine) >> {
+        + Name string
+        + Type string
+        + Hostname string
+        + Capacity *Capacity
+        + Labels <font color=blue>map</font>[string]string
+        + Annotations <font color=blue>map</font>[string]string
+        + MachineID string
+        + Architecture string
+        + ContainerRuntimeVersion string
+        + BootID string
+        + KernelVersion string
+        + KubeProxyVersion string
+        + KubeletVersion string
+        + OperatingSystem string
+        + OsImage string
+
+    }
+    class Resource << (S,Aquamarine) >> {
+        + Kind string
+        + APIVersion string
+        + Name string
+        + Namespace string
+
+    }
+    class ResourceList << (S,Aquamarine) >> {
+        + Kind string
+        + APIVersion string
+        + Namespaced bool
+        + ResourcesCount int
+        + Resources []Resource
+
+    }
+    class Resources << (S,Aquamarine) >> {
+        + Images []Image
+        + Resources <font color=blue>map</font>[string]ResourceList
+
+    }
+    class Tool << (S,Aquamarine) >> {
+        + Vendor string
+        + Name string
+        + BuildTime string
+        + Version string
+        + Commit string
+        + CommitTime string
+
+    }
+}
+
+
+"model.Cluster""uses" o-- "model.Location"
+"model.Cluster""uses" o-- "model.Node"
+"model.Cluster""uses" o-- "model.Resources"
+"model.KBOM""uses" o-- "model.Cluster"
+"model.KBOM""uses" o-- "model.Tool"
+"model.KBOM""uses" o-- "time.Time"
+"model.Node""uses" o-- "model.Capacity"
+"model.ResourceList""uses" o-- "model.Resource"
+"model.Resources""uses" o-- "model.Image"
+"model.Resources""uses" o-- "model.ResourceList"
+
+@enduml

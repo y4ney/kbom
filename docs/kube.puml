@@ -1,0 +1,38 @@
+@startuml
+legend
+<u><b>Legend</b></u>
+Render Aggregations: true
+Render Fields: true
+Render Methods: true
+Pritave Aggregations: true
+end legend
+namespace kube {
+    interface K8sClient  {
+        + Metadata(ctx context.Context) (string, string, error)
+        + Location(ctx context.Context) (*model.Location, error)
+        + AllImages(ctx context.Context) ([]model.Image, error)
+        + AllNodes(ctx context.Context, full bool) ([]model.Node, error)
+        + AllResources(ctx context.Context, full bool) (<font color=blue>map</font>[string]model.ResourceList, error)
+
+    }
+    class k8sDB << (S,Aquamarine) >> {
+        - cfg *rest.Config
+        - client kubernetes.Interface
+        - dynamicClient dynamic.Interface
+
+        + Location(ctx context.Context) (*model.Location, error)
+        + AllNodes(ctx context.Context, full bool) ([]model.Node, error)
+        + AllImages(ctx context.Context) ([]model.Image, error)
+        + Metadata(ctx context.Context) (string, string, error)
+        + AllResources(ctx context.Context, full bool) (<font color=blue>map</font>[string]model.ResourceList, error)
+
+    }
+}
+
+"kube.K8sClient" <|-- "implements""kube.k8sDB"
+
+"kube.k8sDB""uses" o-- "dynamic.Interface"
+"kube.k8sDB""uses" o-- "kubernetes.Interface"
+"kube.k8sDB""uses" o-- "rest.Config"
+
+@enduml
